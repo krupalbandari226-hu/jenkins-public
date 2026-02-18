@@ -1,8 +1,15 @@
 const http = require("http");
 
-http.createServer((req,res)=>{
-res.write("NodeJS Application - DEV Branch");
-res.end();
-}).listen(3000);
+const server = http.createServer((req, res) => {
 
-console.log("Running on port 3000");
+    res.write("NodeJS Application - DEV Branch");
+
+    res.end();
+
+});
+
+server.listen(3000, "0.0.0.0", () => {
+
+    console.log("Running on port 3000");
+
+});
