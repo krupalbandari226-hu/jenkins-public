@@ -1,10 +1,14 @@
-from flask import Flask
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
-app = Flask(__name__)
+class MyServer(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"Python Application - QA Branch")
 
-@app.route('/')
-def home():
-    return "QA Branch Flask Application Running"
+server = HTTPServer(('0.0.0.0', 5000), MyServer)
 
-app.run(host='0.0.0.0', port=5000)
+print("Running on port 5000")
+
+server.serve_forever()
 
